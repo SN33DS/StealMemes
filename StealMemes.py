@@ -11,6 +11,8 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 
 PATH = os.path.dirname(os.path.realpath(__file__))
+if not os.path.exists(f"{PATH}/memes"):
+    os.mkdir(f"{PATH}/memes")
 
 
 def steal_memes():
