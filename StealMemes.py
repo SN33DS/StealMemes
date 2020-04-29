@@ -3,6 +3,7 @@ import os
 import sys
 import requests
 import shutil
+from datetime import datetime
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -12,11 +13,23 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 
 
-os.system('cls')
-Category = sys.argv[1] # (either day, week, month or year)
+print(chr(27) + "[2J")
+date = datetime.now().strftime('%d.%m.%Y')
 
-folder = f'Top {Category} memes'
-# folder_path = './{}'.format(folder)
+try:
+    Category = sys.argv[1] # (either day, week, month or year)
+
+    if Category != 'day' and Category != 'week' and Category != 'month' and Category != 'year':
+        print('Please use a valid syntax')
+        print('The syntax is: python ifunny.py day/week/month/year')
+        sys.exit()
+except IndexError:
+    print('Please use a valid syntax')
+    print('The syntax is: python ifunny.py day/week/month/year')
+    sys.exit()
+
+folder = f'{Category} - {date}'
+
 PATH = os.path.dirname(os.path.realpath(__file__))
 if not os.path.exists(f"{PATH}/{folder}"):
     os.mkdir(f"{PATH}/{folder}")
