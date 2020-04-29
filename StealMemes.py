@@ -48,3 +48,6 @@ def steal_memes():
                     shutil.copyfileobj(meme.raw, f)
             print(f"[{index + 50 * (page - 1)}] New Meme From {meme_link}!")  # Always 50 memes on pages 1-3
     driver.quit()
+
+
+steal_memes()
