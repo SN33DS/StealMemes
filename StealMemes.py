@@ -36,7 +36,7 @@ def steal_memes():
                     meme_link = WebDriverWait(driver, 2).until(ec.presence_of_element_located(
                         (By.TAG_NAME, "video"))).get_attribute("src")  # Waits at most 2 seconds for video to load
                 except TimeoutException:
-                    print(f"[{index + 49 * (page - 1)}] ERROR: Failed to download video.")
+                    print(f"[{index + 50 * (page - 1)}] ERROR: Failed to download video.")
                     continue
                 extension = meme_link.split(".")[-1]
                 meme = requests.get(meme_link, stream=True)
