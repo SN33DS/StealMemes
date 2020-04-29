@@ -6,7 +6,7 @@ Python libraries requests and bs4 are used to find image download links. Seleniu
 
 ### Prerequisites
 
-You must have Chromedriver and Selenium Webdriver to use this project. Learn about using Cchromedriver and Selenium here:
+You must have Chromedriver and Selenium Webdriver to use this project. Learn about using Chromedriver and Selenium here:
 - https://chromedriver.chromium.org/getting-started
 - https://selenium-python.readthedocs.io/installation.html
 - https://selenium-python.readthedocs.io/getting-started.html
