@@ -4,8 +4,6 @@ StealMemes is a python script which scrapes meme images and videos from iFunny.c
 
 Python libraries requests and bs4 are used to find image download links. Selenium webdriver must be used to find video downloads since iFunny.co loads videos dynamically through javascript.
 
-**WARNING** - As the project currently stands, memes will always be saved with non-random names.
-
 ### Prerequisites
 
 You must have Chromedriver and Selenium Webdriver to use this project. Learn about using Chromedriver and Selenium here:
