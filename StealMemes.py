@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import os
+import sys
 import requests
 import shutil
 
@@ -10,13 +11,19 @@ from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 
+
+os.system('cls')
+Category = sys.argv[1] # (either day, week, month or year)
+
+folder = f'Top {Category} memes'
+# folder_path = './{}'.format(folder)
 PATH = os.path.dirname(os.path.realpath(__file__))
-if not os.path.exists(f"{PATH}/memes"):
-    os.mkdir(f"{PATH}/memes")
+if not os.path.exists(f"{PATH}/{folder}"):
+    os.mkdir(f"{PATH}/{folder}")
 
 
 def steal_memes():
-    url = "https://ifunny.co/top-memes/day"
+    url = f"https://ifunny.co/top-memes/{Category}"
 
     options = Options()
     options.add_argument("--headless")
@@ -40,16 +47,16 @@ def steal_memes():
                     continue
                 extension = meme_link.split(".")[-1]
                 meme = requests.get(meme_link, stream=True)
-                with open(f"{PATH}/memes/meme_{page}_{index}.{extension}", "wb") as f:
+                with open(f"{PATH}/{folder}/meme_{page}_{index}.{extension}", "wb") as f:
                     shutil.copyfileobj(meme.raw, f)
             else:  # Deal with image memes
                 meme_link = li.find("img")["data-src"]
                 extension = meme_link.split(".")[-1]
                 meme = requests.get(meme_link, stream=True)
-                with open(f"{PATH}/memes/meme_{page}_{index}.{extension}", "wb") as f:
+                with open(f"{PATH}/{folder}/meme_{page}_{index}.{extension}", "wb") as f:
                     shutil.copyfileobj(meme.raw, f)
             print(f"[{index + 50 * (page - 1)}] New Meme From {meme_link}!")  # Always 50 memes on pages 1-3
+    print('All memes downloaded !')
     driver.quit()
-
 
 steal_memes()
