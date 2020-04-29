@@ -10,7 +10,7 @@ You must have a Chrome version of Selenium Webdriver to use this project. Learn 
 - https://selenium-python.readthedocs.io/installation.html
 - https://selenium-python.readthedocs.io/getting-started.html
 
-### Installing
+### Installation
 
 Once selenium is installed properly, you can run this project through:
 
