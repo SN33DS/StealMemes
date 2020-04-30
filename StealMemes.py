@@ -1,9 +1,9 @@
 from bs4 import BeautifulSoup
+from datetime import datetime
 import os
-import sys
 import requests
 import shutil
-from datetime import datetime
+import sys
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -13,22 +13,23 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 
 
-print(chr(27) + "[2J")
+os.system("cls" if os.name == "nt" else "clear")
 date = datetime.now().strftime('%d.%m.%Y')
 
+
 try:
-    Category = sys.argv[1] # (either day, week, month or year)
-
-    if Category != 'day' and Category != 'week' and Category != 'month' and Category != 'year':
-        print('Please use a valid syntax')
-        print('The syntax is: python ifunny.py day/week/month/year')
-        sys.exit()
+    category = sys.argv[1] # (either day, week, month or year)  
 except IndexError:
-    print('Please use a valid syntax')
-    print('The syntax is: python ifunny.py day/week/month/year')
+    print('Syntax invalid, missing category.')
+    print('The syntax is: python ifunny.py [day|week|month|year]')
     sys.exit()
+if category.lower() not in ['day', 'week', 'month', 'year']:
+        print('Syntax invalid, given category not in available categories.')
+        print('The syntax is: python ifunny.py [day|week|month|year]')
+        sys.exit()
 
-folder = f'{Category} - {date}'
+
+folder = f'{category} - {date}'
 
 PATH = os.path.dirname(os.path.realpath(__file__))
 if not os.path.exists(f"{PATH}/{folder}"):
@@ -36,7 +37,7 @@ if not os.path.exists(f"{PATH}/{folder}"):
 
 
 def steal_memes():
-    url = f"https://ifunny.co/top-memes/{Category}"
+    url = f"https://ifunny.co/top-memes/{category}"
 
     options = Options()
     options.add_argument("--headless")
